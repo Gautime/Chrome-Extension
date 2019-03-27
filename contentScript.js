@@ -18,6 +18,17 @@ function gethtml(who, deep){
     el= null;
     return txt;
 }
+
+/*function cssToObj(we) {
+    var obj = {}, s = we.toLowerCase().replace(/-(.)/g, function (m, g) {
+        return g.toUpperCase();
+    }).replace(/;\s?$/g,"").split(/:|;/g);
+    for (var i = 1; i < s.length; i += 2)
+        obj[s[i].replace(/\s/g,"")] = s[i+1].replace(/^\s+|\s+$/g,"");
+    return obj;
+}*/
+
+
 	//var divs = $('*');
 
 	//console.log(divs[1]);
@@ -37,9 +48,10 @@ function gethtml(who, deep){
 		var tx=gethtml(this,true);
 		alert(tx);
 		var el=this;
-
+		var entry;
 		document.write("Check the console for HTML markup and CSS style of the selected element!");
 		console.log(window.getComputedStyle(this));
+	
 		/*var fs = require('fs'); // reqire fileSystem node module
 		fs.writeFile("console.txt", el, function(err) {
   		if(err) {
