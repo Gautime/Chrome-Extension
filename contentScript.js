@@ -5,6 +5,19 @@ console.log("Chrome extension loaded");
   
 var all=document.body.getElementsByTagName('*');
 var divs=document.body.getElementsByTagName('*');
+
+function gethtml(who, deep){
+    if(!who || !who.tagName) return '';
+    var txt, ax, el= document.createElement("div");
+    el.appendChild(who.cloneNode(false));
+    txt= el.innerHTML;
+    if(deep){
+        ax= txt.indexOf('>')+1;
+        txt= txt.substring(0, ax)+who.innerHTML+ txt.substring(ax);
+    }
+    el= null;
+    return txt;
+}
 	//var divs = $('*');
 
 	//console.log(divs[1]);
@@ -21,23 +34,33 @@ var divs=document.body.getElementsByTagName('*');
 	 {
 		all[i].addEventListener("click",function(){
 		console.log(this);
+		var tx=gethtml(this,true);
+		alert(tx);
+		var el=this;
 
-		var el=JSON.stringify(this);
-		
-		document.write("Check the console");
-		console.log(window.getComputedStyle(this));});
+		document.write("Check the console for HTML markup and CSS style of the selected element!");
+		console.log(window.getComputedStyle(this));
+		/*var fs = require('fs'); // reqire fileSystem node module
+		fs.writeFile("console.txt", el, function(err) {
+  		if(err) {
+    	return console.log(err);
+  		}
+  		console.log("The file was saved!");
+		});
+		//read this line !!!!!//console.log("copy(JSON.decycle(this))");*/
+		});
 	}
 	for (var i = 0, ma=divs.length; i <ma; i++)
 	{
 	
-		var el=this.parentNode;
+		/*var el=this.parentNode;
 		while(el)
 		{
 		divs[i].addEventListener('mouseover', function(){
   		el.classList.remove('h');
 		});
 		el=this.parentNode;	
-		}
+		}*/
 
 		(divs[i]).addEventListener('mouseover', function(){
   		this.classList.add('h');
